@@ -1,0 +1,23 @@
+/login:
+  post:
+    tags:
+      - Login user
+    summary: User sign-in
+    consumes:
+      - application/json
+    parameters:
+      - in: body
+        name: user
+        description: The user to sign-in.
+        schema:
+          type: object
+          properties:
+            username:
+              type: string
+              required: true
+            password:
+              required: true
+              type: string
+    responses:
+      200:
+        description: User login return access_token

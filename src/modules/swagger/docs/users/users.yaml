@@ -1,0 +1,10 @@
+/users:
+  get:
+    tags:
+      - User
+    security:
+      - Bearer: []
+    summary: Current user info
+    responses:
+      200:
+        description: Get all users

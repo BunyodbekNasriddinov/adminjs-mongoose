@@ -1,0 +1,28 @@
+/register:
+  post:
+    tags:
+      - Register user
+    summary: Create a new user
+    consumes:
+      - multipart/form-data
+    parameters:
+      - name: username
+        in: formData
+        description: The user name
+        required: true
+        type: string
+
+      - name: password
+        in: formData
+        description: The user password
+        required: true
+        type: string
+
+      - name: avatar
+        in: formData
+        description: The user image
+        required: true
+        type: file
+    responses:
+      201:
+        description: Create a new user
