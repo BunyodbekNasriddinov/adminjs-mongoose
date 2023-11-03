@@ -2,7 +2,7 @@ import { createServer } from "http";
 import express from "express";
 import mongoose from "mongoose";
 import AdminJS from "adminjs";
-import AdminJSExpress, { log } from "@adminjs/express";
+import AdminJSExpress from "@adminjs/express";
 import * as AdminJSMongoose from "@adminjs/mongoose";
 import config from "./config/config.js";
 import { Server } from "socket.io";
@@ -57,6 +57,7 @@ const start = async () => {
   });
 
   app.use(cors());
+  app.use(express.json());
   app.use(swaggerRouter);
 
   const adminRouter = AdminJSExpress.buildRouter(admin);

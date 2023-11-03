@@ -10,8 +10,8 @@ const options = swaggerJSDoc({
   swaggerDefinition: {
     openapi: "3.0.0",
     info: {
-      title: "YouTube backend",
-      description: "YouTube backend API docs",
+      title: "AdminJS backend",
+      description: "AdminJS - Chat backend API docs",
     },
     servers: [
       {
@@ -25,7 +25,7 @@ const options = swaggerJSDoc({
           type: "apiKey",
           name: "token",
           in: "header",
-          description: "Please use login api to get access_token",
+          description: "Please use login api to get token",
         },
       },
     },

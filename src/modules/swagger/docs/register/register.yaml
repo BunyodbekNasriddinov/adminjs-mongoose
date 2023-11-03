@@ -1,28 +1,44 @@
-/register:
+/user/register:
   post:
     tags:
       - Register user
     summary: Create a new user
     consumes:
-      - multipart/form-data
+      - application/json
     parameters:
       - name: username
-        in: formData
         description: The user name
         required: true
         type: string
 
       - name: password
-        in: formData
         description: The user password
         required: true
         type: string
-
-      - name: avatar
-        in: formData
-        description: The user image
-        required: true
-        type: file
     responses:
       201:
         description: Create a new user
+
+/user/all:
+  get:
+    tags:
+      - Get all users
+  responses:
+    200:
+      description: Return all users
+
+/user/info:
+  get:
+    tags:
+      - Get by user id  user and user messages
+    summary: Return users and messages
+    consumes:
+      - application/json
+    parameters:
+      - name: token
+        in: header
+        description: User info return
+
+    responses:
+      200:
+        description: User info return

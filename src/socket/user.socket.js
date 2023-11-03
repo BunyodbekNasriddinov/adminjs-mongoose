@@ -2,16 +2,16 @@ import { User } from "../modules/user/user.model.js";
 import jwt from "../utils/jwt.js";
 
 export default async (io, socket) => {
-  const { token } = socket.handshake.auth;
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if (!token) {
-      throw new Error("Token is required");
-    }
+  // const { token } = socket.handshake.auth;
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // if (!token) {
+    //   throw new Error("Token is required");
+    // }
 
-    if (!decoded.id) {
-      throw new Error("Token invalid");
-    }
+    // if (!decoded.id) {
+    //   throw new Error("Token invalid");
+    // }
 
     const users = await User.find().populate({ path: "messages" });
 
@@ -29,11 +29,11 @@ export default async (io, socket) => {
     socket.on("user-register", async (data) => {
       console.log("new user", data);
       const newUser = await User.create(data);
-      newUser.save(User);
+      await newUser.save();
 
       console.log("new user added", newUser);
 
-      const token = jwt.sign(newUser._id);
+      const token = jwt.sign({ id: newUser._id });
 
       io.to(socket.id).emit("new-user-add", {
         ...newUser,
@@ -61,6 +61,6 @@ export default async (io, socket) => {
       });
     });
   } catch (error) {
-    throw new Error(error.message);
+    throw new Error(error);
   }
 };
