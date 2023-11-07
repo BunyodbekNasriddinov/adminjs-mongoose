@@ -3,7 +3,7 @@ import jwt from "../utils/jwt.js";
 
 export default async (io, socket) => {
   try {
-  // const { token } = socket.handshake.auth;
+    // const { token } = socket.handshake.auth;
     // const decoded = jwt.verify(token, process.env.JWT_SECRET);
     // if (!token) {
     //   throw new Error("Token is required");
@@ -13,12 +13,12 @@ export default async (io, socket) => {
     //   throw new Error("Token invalid");
     // }
 
-    const users = await User.find().populate({ path: "messages" });
+    // const users = await User.find().populate({ path: "messages" });
 
-    socket.on("ok", (data) => console.log(data));
+    // socket.on("ok", (data) => console.log(data));
 
     // all users get
-    io.to(socket.id).emit("get-users", users);
+    // io.to(socket.id).emit("get-users", users);
 
     socket.on("get-messages-by-id", (id) => {
       const user = User.findById(id).populate({ path: "messages" });
@@ -41,7 +41,6 @@ export default async (io, socket) => {
         status: 201,
         message: "user created",
       });
-      console.log(newUser);
 
       // user login
       socket.on("user-login", async (id) => {
