@@ -1,6 +1,6 @@
-import { model, Schema } from "mongoose";
+import { model, Schema } from "mongoose"
 
-export const UserSchema = new Schema(
+export const UserSchema = Schema(
   {
     username: { type: "String", required: true },
     password: { type: "String", required: true },
@@ -10,8 +10,9 @@ export const UserSchema = new Schema(
         ref: "Message",
       },
     ],
+    socket_id: String
   },
   { timestamps: true }
-);
+)
 
-export const User = model("User", UserSchema);
+export const User = model("User", UserSchema)

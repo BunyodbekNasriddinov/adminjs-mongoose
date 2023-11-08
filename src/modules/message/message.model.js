@@ -1,6 +1,6 @@
-import { model, Schema, Types } from "mongoose";
+import { model, Schema, Types } from "mongoose"
 
-export const MessageSchema = new Schema(
+export const MessageSchema = Schema(
   {
     user: [
       {
@@ -8,12 +8,24 @@ export const MessageSchema = new Schema(
         ref: "User",
       },
     ],
-    to: { type: "String", required: true },
     message: { type: "String", required: true },
-    from: { type: "String", required: true },
+    // to: { type: "String", required: true },
+    to: [
+      {
+        type: Types.ObjectId,
+        ref: 'User'
+      }
+    ],
+    from: [
+      {
+        type: Types.ObjectId,
+        ref: 'User'
+      }
+    ],
+    // from: { type: "String", required: true },
     // image: { type: "String" },
   },
   { timestamps: true }
-);
+)
 
-export const Message = model("Message", MessageSchema);
+export const Message = model("Message", MessageSchema)
